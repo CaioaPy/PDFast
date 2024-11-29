@@ -1,16 +1,23 @@
 import tkinter as tk
 from tkinter import filedialog
+import os
 
 janela = tk.Tk()
 janela.geometry("300x300")
 janela.title("PDFast")
 
+caminho_arquivo = None
+
 def EscolherPDF():
+    global caminho_arquivo 
     caminho_arquivo = filedialog.askopenfilename(
         title="Selecione um arquivo PDF",
         filetypes=[("Arquivos PDF", "*.pdf")]
     )
-    selecionado_texto.set(caminho_arquivo)
+    if caminho_arquivo:
+        arquivo_nome = os.path.basename(caminho_arquivo)
+    selecionado_texto.set(arquivo_nome)
+
 
 grid_frame = tk.Frame(janela)
 grid_frame.pack(expand=True, fill="both")
