@@ -3,24 +3,34 @@ from tkinter import filedialog
 from tkinter import Toplevel
 from tkinter import Label
 import os
+import pymupdf
 
 janela = tk.Tk()
 janela.geometry("300x300")
 janela.title("PDFast")
 
 caminho_arquivo = None
+nome_arquivo = None
 
 def EscolherPDF():
     global caminho_arquivo 
+    global nome_arquivo
     caminho_arquivo = filedialog.askopenfilename(
         title="Selecione um arquivo PDF",
         filetypes=[("Arquivos PDF", "*.pdf")]
     )
     if caminho_arquivo:
-        arquivo_nome = os.path.basename(caminho_arquivo)
-    selecionado_texto.set(arquivo_nome)
+        nome_arquivo = os.path.basename(caminho_arquivo)
+    selecionado_texto.set(nome_arquivo)
 
 def Resumo():
+    doc = pymupdf.open(caminho_arquivo) 
+    out = open(nome_arquivo + "_output.txt", "wb")
+    for page in doc:
+        text = page.get_text().encode("utf8") 
+        out.write(text)
+        out.write(bytes((12,)))
+    out.close()
     janela_resumo = Toplevel()
     janela_resumo.geometry("500x500")
     janela_resumo.title("Análise PDF")
