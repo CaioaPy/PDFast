@@ -6,11 +6,12 @@ import os
 import pymupdf
 
 janela = tk.Tk()
-janela.geometry("500x500")
+janela.geometry("250x250")
 janela.title("PDFast")
 
 caminho_arquivo = None
 nome_arquivo = None
+texto_arquivo = None
 
 def EscolherPDF():
     global caminho_arquivo 
@@ -25,10 +26,12 @@ def EscolherPDF():
     habilitar_botao()
 
 def Resumo():
+    global texto_arquivo
     global nome_arquivo
     doc = pymupdf.open(caminho_arquivo)
     nome_arquivo = nome_arquivo.rstrip(".pdf")
     out = open(nome_arquivo + "_output.txt", "wb")
+    texto_arquivo = nome_arquivo + "_output.txt"
     for page in doc:
         text = page.get_text().encode("utf8") 
         out.write(text)
