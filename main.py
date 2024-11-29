@@ -25,7 +25,9 @@ def EscolherPDF():
     habilitar_botao()
 
 def Resumo():
-    doc = pymupdf.open(caminho_arquivo) 
+    global nome_arquivo
+    doc = pymupdf.open(caminho_arquivo)
+    nome_arquivo = nome_arquivo.rstrip(".pdf")
     out = open(nome_arquivo + "_output.txt", "wb")
     for page in doc:
         text = page.get_text().encode("utf8") 
