@@ -6,7 +6,7 @@ import os
 import pymupdf
 
 janela = tk.Tk()
-janela.geometry("300x300")
+janela.geometry("500x500")
 janela.title("PDFast")
 
 caminho_arquivo = None
@@ -22,6 +22,7 @@ def EscolherPDF():
     if caminho_arquivo:
         nome_arquivo = os.path.basename(caminho_arquivo)
     selecionado_texto.set(nome_arquivo)
+    habilitar_botao()
 
 def Resumo():
     doc = pymupdf.open(caminho_arquivo) 
@@ -36,6 +37,10 @@ def Resumo():
     janela_resumo.title("Análise PDF")
     resumo_label = Label(janela_resumo,text="aaa")
     resumo_label.pack()
+
+def habilitar_botao():
+    if nome_arquivo != None:
+        botaoenviar.config(state="normal") 
 
 
 grid_frame = tk.Frame(janela)
@@ -58,7 +63,7 @@ selecionado_texto.set(" ")
 selecionado = tk.Label(grid_frame, textvariable=selecionado_texto)
 selecionado.grid(row=3, column=1)
 
-botaoenviar = tk.Button(grid_frame, text="Analizar pdf", command=Resumo)
+botaoenviar = tk.Button(grid_frame, text="Analizar pdf", command=Resumo, state="disabled")
 botaoenviar.grid(row=4, column=1)
 
 janela.mainloop()
