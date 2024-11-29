@@ -10,6 +10,7 @@ def EscolherPDF():
         title="Selecione um arquivo PDF",
         filetypes=[("Arquivos PDF", "*.pdf")]
     )
+    selecionado_texto.set(caminho_arquivo)
 
 grid_frame = tk.Frame(janela)
 grid_frame.pack(expand=True, fill="both")
@@ -26,7 +27,9 @@ holder.grid(row=1, column=0)
 botao = tk.Button(grid_frame, text="Escolher PDF", command=EscolherPDF)
 botao.grid(row=2, column=1)
 
-selecionado = tk.Label(grid_frame, text="test")
+selecionado_texto = tk.StringVar()
+selecionado_texto.set(" ")
+selecionado = tk.Label(grid_frame, textvariable=selecionado_texto)
 selecionado.grid(row=3, column=1)
 
 janela.mainloop()
