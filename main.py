@@ -4,10 +4,7 @@ from tkinter import Toplevel
 from tkinter import Label
 import os
 import pymupdf
-
-janela = tk.Tk()
-janela.geometry("250x250")
-janela.title("PDFast")
+import cohere
 
 caminho_arquivo = None
 nome_arquivo = None
@@ -49,12 +46,10 @@ def habilitar_botao():
         botaoenviar.config(state="normal")
 
 def ResumirExtrato():
-    import cohere
     global chave_api
     global texto_arquivo
 
-    api_key = chave_api
-    co = cohere.Client(api_key)
+    co = cohere.Client(chave_api)
 
     with open(texto_arquivo, 'r') as file:
         texto = file.read().replace('\n', '')
@@ -66,6 +61,17 @@ def ResumirExtrato():
 
     print(resposta.summary)
 
+def GetChave():
+    global chave_api
+
+    chave = chave_campo.get()
+    chave_api = chave
+    print(chave_api)
+    
+janela = tk.Tk()
+janela.geometry("650x350")
+janela.title("PDFast")
+
 grid_frame = tk.Frame(janela)
 grid_frame.pack(expand=True, fill="both")
 
@@ -75,18 +81,24 @@ grid_frame.grid_columnconfigure([0, 1, 2, 3, 4], weight=1)
 titulo = tk.Label(grid_frame, text="PDFast", font=("Arial", 24))
 titulo.grid(row=0, column=1)
 
-holder = tk.Label(grid_frame, text=" ")
-holder.grid(row=1, column=0)
+escolher_botao = tk.Button(grid_frame, text="Escolher PDF", command=EscolherPDF)
+escolher_botao.grid(row=3, column=1)
 
-botao = tk.Button(grid_frame, text="Escolher PDF", command=EscolherPDF)
-botao.grid(row=2, column=1)
+chave_campo = tk.Entry(grid_frame)
+chave_campo.grid(row=2, column=0)
+
+chave_botao = tk.Button(grid_frame, text="Salvar Chave", command=GetChave)
+chave_botao.grid(row=3, column=0)
+
+explicacao = tk.Label(grid_frame, text="Para fazer a analise do PDF crie\n e insira uma chave do Cohere,\n você pode obter uma clicando aqui.", font=("Arial", 12))
+explicacao.grid(row=1, column=2)
 
 selecionado_texto = tk.StringVar()
 selecionado_texto.set(" ")
 selecionado = tk.Label(grid_frame, textvariable=selecionado_texto)
-selecionado.grid(row=3, column=1)
+selecionado.grid(row=4, column=1)
 
 botaoenviar = tk.Button(grid_frame, text="Analizar pdf", command=Extrair, state="disabled")
-botaoenviar.grid(row=4, column=1)
+botaoenviar.grid(row=5, column=1)
 
 janela.mainloop()
