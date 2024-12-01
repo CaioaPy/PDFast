@@ -28,21 +28,23 @@ def Extrair():
     global nome_arquivo
     doc = pymupdf.open(caminho_arquivo)
     nome_arquivo = nome_arquivo.rstrip(".pdf")
-    out = open(nome_arquivo + "_output.txt", "wb")
+    out = open(nome_arquivo + "_output.txt", "w", encoding="utf-8")
     texto_arquivo = nome_arquivo + "_output.txt"
     for page in doc:
-        text = page.get_text().encode("utf8") 
+        text = page.get_text()
         out.write(text)
-        out.write(bytes((12,)))
+        out.write("\f")
     out.close()
+    texto_resumo = ResumirExtrato()
+    # editar tamanho da janela e insert do texto
     janela_extrair = Toplevel()
-    janela_extrair.geometry("500x500")
+    janela_extrair.geometry("500x300")
     janela_extrair.title("Análise PDF")
-    resumo_label = Label(janela_extrair,text="aaa")
+    resumo_label = Label(janela_extrair,text= texto_resumo)
     resumo_label.pack()
 
 def habilitar_botao():
-    if nome_arquivo != None:
+    if nome_arquivo != None and chave_api != None:
         botaoenviar.config(state="normal")
 
 def ResumirExtrato():
@@ -51,29 +53,30 @@ def ResumirExtrato():
 
     co = cohere.Client(chave_api)
 
-    with open(texto_arquivo, 'r') as file:
-        texto = file.read().replace('\n', '')
+    with open(texto_arquivo, 'r', encoding='utf-8') as file:
+        texto = file.read()
+
 
     resposta = co.summarize(
         text=texto,
         length="long"
     )
 
-    print(resposta.summary)
+    return resposta.summary
 
 def GetChave():
     global chave_api
 
     chave = chave_campo.get()
     chave_api = chave
-    print(chave_api)
+    habilitar_botao()
     
 janela = tk.Tk()
-janela.geometry("650x350")
+janela.geometry("760x350")
 janela.title("PDFast")
 
 grid_frame = tk.Frame(janela)
-grid_frame.pack(expand=True, fill="both")
+grid_frame.pack(expand=True, fill="x")
 
 grid_frame.grid_rowconfigure([0, 1, 2, 3, 4], weight=1)
 grid_frame.grid_columnconfigure([0, 1, 2, 3, 4], weight=1)
@@ -90,7 +93,7 @@ chave_campo.grid(row=2, column=0)
 chave_botao = tk.Button(grid_frame, text="Salvar Chave", command=GetChave)
 chave_botao.grid(row=3, column=0)
 
-explicacao = tk.Label(grid_frame, text="Para fazer a analise do PDF crie\n e insira uma chave do Cohere,\n você pode obter uma clicando aqui.", font=("Arial", 12))
+explicacao = tk.Label(grid_frame, text="Para fazer a analise do PDF crie\n e insira uma chave do Cohere,\n você pode obter uma acessando o\n dashboard, criando uma conta no\n site oficial. (dashboard.cohere.com)", font=("Arial", 12))
 explicacao.grid(row=1, column=2)
 
 selecionado_texto = tk.StringVar()
