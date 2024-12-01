@@ -25,7 +25,7 @@ def EscolherPDF():
     selecionado_texto.set(nome_arquivo)
     habilitar_botao()
 
-def Resumo():
+def Extrair():
     global texto_arquivo
     global nome_arquivo
     doc = pymupdf.open(caminho_arquivo)
@@ -37,16 +37,15 @@ def Resumo():
         out.write(text)
         out.write(bytes((12,)))
     out.close()
-    janela_resumo = Toplevel()
-    janela_resumo.geometry("500x500")
-    janela_resumo.title("Análise PDF")
-    resumo_label = Label(janela_resumo,text="aaa")
+    janela_extrair = Toplevel()
+    janela_extrair.geometry("500x500")
+    janela_extrair.title("Análise PDF")
+    resumo_label = Label(janela_extrair,text="aaa")
     resumo_label.pack()
 
 def habilitar_botao():
     if nome_arquivo != None:
-        botaoenviar.config(state="normal") 
-
+        botaoenviar.config(state="normal")
 
 grid_frame = tk.Frame(janela)
 grid_frame.pack(expand=True, fill="both")
@@ -68,7 +67,7 @@ selecionado_texto.set(" ")
 selecionado = tk.Label(grid_frame, textvariable=selecionado_texto)
 selecionado.grid(row=3, column=1)
 
-botaoenviar = tk.Button(grid_frame, text="Analizar pdf", command=Resumo, state="disabled")
+botaoenviar = tk.Button(grid_frame, text="Analizar pdf", command=Extrair, state="disabled")
 botaoenviar.grid(row=4, column=1)
 
 janela.mainloop()
