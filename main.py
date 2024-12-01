@@ -12,6 +12,7 @@ janela.title("PDFast")
 caminho_arquivo = None
 nome_arquivo = None
 texto_arquivo = None
+chave_api = None
 
 def EscolherPDF():
     global caminho_arquivo 
@@ -46,6 +47,24 @@ def Extrair():
 def habilitar_botao():
     if nome_arquivo != None:
         botaoenviar.config(state="normal")
+
+def ResumirExtrato():
+    import cohere
+    global chave_api
+    global texto_arquivo
+
+    api_key = chave_api
+    co = cohere.Client(api_key)
+
+    with open(texto_arquivo, 'r') as file:
+        texto = file.read().replace('\n', '')
+
+    resposta = co.summarize(
+        text=texto,
+        length="long"
+    )
+
+    print(resposta.summary)
 
 grid_frame = tk.Frame(janela)
 grid_frame.pack(expand=True, fill="both")
