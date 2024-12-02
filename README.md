@@ -20,10 +20,10 @@ Para executar o PDFast, você precisará ter instalado:
 # Como instalar
 - Clone o repositório (git clone https://github.com/seu-usuario/PDFast.git)
 ## Instale as dependências:
-- ```tkinter```
-- ```pymupdf```
-- ```cohere```
-- ```translatepy```
+- ```tkinter``` (pip install tkinter)
+- ```pymupdf``` (pip install pymupdf)
+- ```cohere``` (pip install cohere)
+- ```translatepy``` (pip install translatepy)
 
 # Como usar
 - Abra a aplicação ```main.py```: <br>
