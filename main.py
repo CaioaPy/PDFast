@@ -36,12 +36,12 @@ def Extrair():
         out.write("\f")
     out.close()
     texto_resumo = ResumirExtrato()
-    # editar tamanho da janela e insert do texto
     janela_extrair = Toplevel()
-    janela_extrair.geometry("500x300")
+    janela_extrair.geometry("700x500")
     janela_extrair.title("Análise PDF")
-    resumo_label = Label(janela_extrair,text= texto_resumo)
-    resumo_label.pack()
+    resumo_texto_final = tk.Text(janela_extrair, wrap="word")
+    resumo_texto_final.pack(fill="both", expand="true", padx="15", pady="15")
+    resumo_texto_final.insert("1.0", texto_resumo)
 
 def habilitar_botao():
     if nome_arquivo != None and chave_api != None:
