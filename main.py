@@ -5,6 +5,7 @@ from tkinter import Label
 import os
 import pymupdf
 import cohere
+from translatepy import Translator
 
 caminho_arquivo = None
 nome_arquivo = None
@@ -36,6 +37,7 @@ def Extrair():
         out.write("\f")
     out.close()
     texto_resumo = ResumirExtrato()
+    texto_resumo = TraduzirTexto(texto_resumo)
     janela_extrair = Toplevel()
     janela_extrair.geometry("700x500")
     janela_extrair.title("Análise PDF")
@@ -70,6 +72,11 @@ def GetChave():
     chave = chave_campo.get()
     chave_api = chave
     habilitar_botao()
+
+def TraduzirTexto(texto):
+    translator = Translator()
+    traducao = translator.translate(texto, "portuguese")
+    return traducao.result
     
 janela = tk.Tk()
 janela.geometry("760x350")
