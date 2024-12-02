@@ -18,7 +18,7 @@ Para executar o PDFast, você precisará ter instalado:
 - translatepy
 
 # Como instalar
-- Clone o repositório (git clone https://github.com/seu-usuario/PDFast.git)
+- Clone o repositório (git clone https://github.com/CaioaPy/PDFast.git)
 ## Instale as dependências:
 - ```tkinter``` (pip install tkinter)
 - ```pymupdf``` (pip install pymupdf)
