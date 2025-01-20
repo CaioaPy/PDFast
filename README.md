@@ -1,49 +1,49 @@
 # PDFast
-<b>PDFast</b> é uma ferramenta desenvolvida em Python para extração, resumo e tradução rápida do conteúdo de documentos PDF. A aplicação utiliza a API do Cohere para realizar resumos abstrativos e a biblioteca Translatepy para traduzir o texto resumido para o idioma desejado.
+<b>PDFast</b> is a tool developed in Python for quick extraction, summarization, and translation of PDF document content. The application uses the Cohere API for abstractive summarization and the Translatepy library to translate the summarized text into the desired language.
 
-# Funcionalidades
-- Extração de texto: Lê o conteúdo de arquivos PDF preservando sua estrutura básica.
-- Resumo abstrativo: Gera um resumo coerente e conciso do texto extraído utilizando a API do Cohere.
-- Tradução de texto: Traduz automaticamente o resumo gerado para o português ou outro idioma configurado.
-- Interface intuitiva: Interface gráfica simples e funcional criada com a biblioteca tkinter.
+# Features
+- **Text Extraction**: Reads the content of PDF files while preserving their basic structure.
+- **Abstractive Summarization**: Generates a coherent and concise summary of the extracted text using the Cohere API.
+- **Text Translation**: Automatically translates the generated summary into Portuguese or another configured language.
+- **Intuitive Interface**: Simple and functional graphical interface created with the tkinter library.
 
-# Pré-requisitos
-Para executar o PDFast, você precisará ter instalado:
+# Prerequisites
+To run PDFast, you will need:
 
-- Python 3.10 ou superior: Certifique-se de que o Python está corretamente instalado no sistema.
-## Bibliotecas Python necessárias:
+- **Python 3.10 or higher**: Ensure that Python is correctly installed on your system.
+## Required Python Libraries:
 - tkinter
 - pymupdf
 - cohere
 - translatepy
 
-# Como instalar
-- Clone o repositório (git clone https://github.com/CaioaPy/PDFast.git)
-## Instale as dependências:
+# Installation
+- Clone the repository: `git clone https://github.com/CaioaPy/PDFast.git`
+## Install dependencies:
 ```pip install -r requirements.txt``` (tkinter, pymupdf, cohere, translatepy)
 
-# Como usar
-- Abra a aplicação ```main.py```: <br>
-Selecione um PDF: Clique em "Escolher PDF" e escolha o arquivo que deseja analisar.
+# How to Use
+- Open the application `main.py`:  
+Select a PDF: Click on "Choose PDF" and select the file you want to analyze.
 
-- Configure sua chave do Cohere:
-Insira sua chave API do Cohere na seção indicada e clique em "Salvar Chave".
-Você pode obter uma chave criando uma conta no dashboard do Cohere.
+- Configure your Cohere key:  
+Enter your Cohere API key in the designated section and click "Save Key."  
+You can obtain a key by creating an account on the Cohere dashboard.
 
-- Analise o PDF:
-Clique em "Analisar PDF".
-O conteúdo será extraído, resumido e traduzido automaticamente.
+- Analyze the PDF:  
+Click on "Analyze PDF."  
+The content will be extracted, summarized, and translated automatically.
 
-# Tecnologias Utilizadas
-- Python
-- tkinter: Interface gráfica.
-- PyMuPDF: Extração de texto de PDFs.
-- Cohere: Resumo abstrativo.
-- Translatepy: Tradução de texto.
+# Technologies Used
+- **Python**
+- **tkinter**: Graphical interface.
+- **PyMuPDF**: PDF text extraction.
+- **Cohere**: Abstractive summarization.
+- **Translatepy**: Text translation.
 # APIs:
-- Cohere API para gerar resumos abstrativos.
+- Cohere API for generating abstractive summaries.
 
-# Licença
-Este projeto está licenciado sob a licença MIT. Consulte o arquivo LICENSE para mais detalhes.
+# License
+This project is licensed under the MIT license. See the LICENSE file for more details.
 
-# PDFast: Extraia, resuma e traduza conteúdo de PDFs de forma rápida e eficiente. 🚀
+# PDFast: Extract, summarize, and translate PDF content quickly and efficiently. 🚀
