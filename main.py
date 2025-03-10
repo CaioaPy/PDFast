@@ -79,7 +79,7 @@ def TraduzirTexto(texto):
     return traducao.result
     
 janela = tk.Tk()
-janela.geometry("760x350")
+janela.geometry("550x320")
 janela.title("PDFast")
 
 grid_frame = tk.Frame(janela)
@@ -94,14 +94,17 @@ titulo.grid(row=0, column=1)
 escolher_botao = tk.Button(grid_frame, text="Escolher PDF", command=EscolherPDF)
 escolher_botao.grid(row=3, column=1)
 
+titulo = tk.Label(grid_frame, text="Insira sua chave", font=("Arial", 12))
+titulo.grid(row=2, column=2)
+
 chave_campo = tk.Entry(grid_frame)
-chave_campo.grid(row=2, column=0)
+chave_campo.grid(row=3, column=2)
 
 chave_botao = tk.Button(grid_frame, text="Salvar Chave", command=GetChave)
-chave_botao.grid(row=3, column=0)
+chave_botao.grid(row=4, column=2)
 
 explicacao = tk.Label(grid_frame, text="Para fazer a analise do PDF crie\n e insira uma chave do Cohere,\n você pode obter uma acessando o\n dashboard, criando uma conta no\n site oficial. (dashboard.cohere.com)", font=("Arial", 12))
-explicacao.grid(row=1, column=2)
+explicacao.grid(row=1, column=1)
 
 selecionado_texto = tk.StringVar()
 selecionado_texto.set(" ")
