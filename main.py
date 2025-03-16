@@ -94,7 +94,7 @@ titulo.grid(row=0, column=1)
 escolher_botao = tk.Button(grid_frame, text="Escolher PDF", command=EscolherPDF)
 escolher_botao.grid(row=3, column=1)
 
-titulo = tk.Label(grid_frame, text="Insira sua chave", font=("Arial", 12))
+titulo = tk.Label(grid_frame, text="Insira sua chave API", font=("Arial", 12))
 titulo.grid(row=2, column=2)
 
 chave_campo = tk.Entry(grid_frame)
@@ -103,15 +103,15 @@ chave_campo.grid(row=3, column=2)
 chave_botao = tk.Button(grid_frame, text="Salvar Chave", command=GetChave)
 chave_botao.grid(row=4, column=2)
 
-explicacao = tk.Label(grid_frame, text="Para fazer a analise do PDF crie\n e insira uma chave do Cohere,\n você pode obter uma acessando o\n dashboard, criando uma conta no\n site oficial. (dashboard.cohere.com)", font=("Arial", 12))
+explicacao = tk.Label(grid_frame, text="Para analisar o PDF, crie e insira\n uma chave API do Cohere.\n Você pode obtê-la acessando o\n painel (dashboard) e criando uma\n conta no site oficial: dashboard.cohere.com", font=("Arial", 12))
 explicacao.grid(row=1, column=1)
 
 selecionado_texto = tk.StringVar()
-selecionado_texto.set(" ")
+selecionado_texto.set("Nenhum arquivo selecionado")
 selecionado = tk.Label(grid_frame, textvariable=selecionado_texto)
 selecionado.grid(row=4, column=1)
 
-botaoenviar = tk.Button(grid_frame, text="Analizar pdf", command=Extrair, state="disabled")
+botaoenviar = tk.Button(grid_frame, text="Analisar pdf", command=Extrair, state="disabled")
 botaoenviar.grid(row=5, column=1)
 
 janela.mainloop()
